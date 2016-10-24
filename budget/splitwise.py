@@ -27,9 +27,6 @@ class Splitwise(object):
     def request(self, url, method ="GET"):
         """Make HTTP request and deserialise the JSON response"""
         resp, content = self.client.request(url, method)
-        if "get_expenses" in url and self.person.name == "Niklas":
-            with open("/tmp/niklas-expenses.json", "w") as f:
-                f.write(content)
         return json.loads(content)
 
     def _build_url(self, path, query = dict()):
