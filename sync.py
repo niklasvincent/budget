@@ -28,13 +28,18 @@ def main(config_filename):
                 user_id=person.user_id,
                 created_at=time_now,
                 success=False,
+                nbr_of_updates=0,
+                nbr_of_deletes=0,
                 message=str(e)
             )
         else:
+            nbr_of_updates = len(expenses)
             db.add_marker(
                 user_id=person.user_id,
                 created_at=time_now,
                 success=True,
+                nbr_of_updates=nbr_of_updates,
+                nbr_of_deletes=0,
                 message=None
             )
 
