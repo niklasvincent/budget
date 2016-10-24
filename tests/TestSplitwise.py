@@ -7,6 +7,8 @@ import oauth2
 
 from datetime import datetime
 
+from mock import Mock, MagicMock
+
 path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../budget'))
 sys.path.insert(1, path)
 
@@ -16,7 +18,7 @@ from splitwise import *
 
 class TestSplitwise(unittest.TestCase):
 
-    def loadJson(self, filename):
+    def _load_json(self, filename):
         absolute_filename = os.path.abspath(os.path.join(os.path.dirname(__file__), filename))
         with open(absolute_filename, 'r') as f:
             data = json.load(f)
@@ -47,7 +49,7 @@ class TestSplitwise(unittest.TestCase):
 
     def testGetUserShareNonZero(self):
         splitwise = Splitwise(self.consumer, self.person)
-        expenses = self.loadJson("data/expenses/non-zero-sum-expense.json")
+        expenses = self._load_json("data/expenses/non-zero-sum-expense.json")
         cost = splitwise._get_user_share(expenses.get("expenses")[0])
         self.assertEquals(
             cost,
@@ -58,7 +60,7 @@ class TestSplitwise(unittest.TestCase):
 
     def testGetUserShareZero(self):
         splitwise = Splitwise(self.consumer, self.person)
-        expenses = self.loadJson("data/expenses/zero-sum-expense.json")
+        expenses = self._load_json("data/expenses/zero-sum-expense.json")
         cost = splitwise._get_user_share(expenses.get("expenses")[0])
         self.assertEquals(
             cost,
@@ -69,7 +71,7 @@ class TestSplitwise(unittest.TestCase):
 
     def testNonZeroSumExpenseIsIncluded(self):
         splitwise = Splitwise(self.consumer, self.person)
-        expenses = self.loadJson("data/expenses/non-zero-sum-expense.json")
+        expenses = self._load_json("data/expenses/non-zero-sum-expense.json")
         self.assertTrue(
             splitwise._is_applicable_expense(expenses.get("expenses")[0]),
             "Expense should be applicable"
@@ -77,10 +79,24 @@ class TestSplitwise(unittest.TestCase):
 
     def testZeroSumExpenseIsExcluded(self):
         splitwise = Splitwise(self.consumer, self.person)
-        expenses = self.loadJson("data/expenses/zero-sum-expense.json")
+        expenses = self._load_json("data/expenses/zero-sum-expense.json")
         self.assertFalse(
             splitwise._is_applicable_expense(expenses.get("expenses")[0]),
             "Expense should be non-applicable"
+        )
+
+    def testGetExpenses(self):
+        splitwise = Splitwise(self.consumer, self.person)
+        expenses = self._load_json("data/expenses/mixed-expenses.json")
+        categories = self._load_json("data/categories.json")
+        m = Mock()
+        m.side_effect = [categories, expenses]
+        splitwise.request = m
+        expenses = splitwise.get_expenses()
+        self.assertEquals(
+            len(expenses),
+            8,
+            "Wrong number of expenses"
         )
 
 

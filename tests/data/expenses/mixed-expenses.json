@@ -1,0 +1,492 @@
+{
+	"expenses": [{
+		"id": 99618911,
+		"group_id": 712704,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Wine for mum",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": null,
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "equal",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "37.94",
+		"currency_code": "GBP",
+		"repayments": [],
+		"date": "2014-06-05T16:23:51Z",
+		"created_at": "2014-06-05T16:23:59Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-05T16:23:59Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 38,
+			"name": "Liquor"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "37.94",
+			"owed_share": "37.94",
+			"net_balance": "0.0"
+		}]
+	}, {
+		"id": 99556230,
+		"group_id": 712704,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Carbon Copy Cloner",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": null,
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "equal",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "33.0",
+		"currency_code": "GBP",
+		"repayments": [],
+		"date": "2014-06-05T11:54:05Z",
+		"created_at": "2014-06-05T11:54:28Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-05T11:54:28Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 11,
+			"name": "Other"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "33.0",
+			"owed_share": "33.0",
+			"net_balance": "0.0"
+		}]
+	}, {
+		"id": 99193641,
+		"group_id": 712704,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Ottolenghi cake ",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": null,
+		"next_repeat": null,
+		"details": "",
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "split",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "8.0",
+		"currency_code": "GBP",
+		"repayments": [],
+		"date": "2014-06-03T23:32:15Z",
+		"created_at": "2014-06-03T23:32:20Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-03T23:32:20Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 42,
+			"name": "Gifts"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "8.0",
+			"owed_share": "8.0",
+			"net_balance": "0.0"
+		}]
+	}, {
+		"id": 99092616,
+		"group_id": 659050,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Salad",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": null,
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": null,
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "1.39",
+		"currency_code": "GBP",
+		"repayments": [{
+			"from": 1234,
+			"to": 4567,
+			"amount": "0.7"
+		}],
+		"date": "2014-06-03T14:05:31Z",
+		"created_at": "2014-06-03T14:05:44Z",
+		"created_by": {
+			"id": 4567,
+			"first_name": "Hanna",
+			"last_name": "V",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-03T14:05:44Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 18,
+			"name": "General"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 4567,
+				"first_name": "Hanna",
+				"last_name": "V",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 4567,
+			"paid_share": "1.39",
+			"owed_share": "0.69",
+			"net_balance": "0.7"
+		}, {
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "0.0",
+			"owed_share": "0.7",
+			"net_balance": "-0.7"
+		}]
+	}, {
+		"id": 98251672,
+		"group_id": 659050,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Waiteose ",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": null,
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": null,
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "50.26",
+		"currency_code": "GBP",
+		"repayments": [{
+			"from": 1234,
+			"to": 4567,
+			"amount": "28.65"
+		}],
+		"date": "2014-06-01T12:59:48Z",
+		"created_at": "2014-05-31T13:00:07Z",
+		"created_by": {
+			"id": 4567,
+			"first_name": "Hanna",
+			"last_name": "V",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-05-31T13:00:40Z",
+		"updated_by": {
+			"id": 4567,
+			"first_name": "Hanna",
+			"last_name": "V",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 18,
+			"name": "General"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "0.0",
+			"owed_share": "28.65",
+			"net_balance": "-28.65"
+		}, {
+			"user": {
+				"id": 4567,
+				"first_name": "Hanna",
+				"last_name": "V",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 4567,
+			"paid_share": "50.26",
+			"owed_share": "21.61",
+			"net_balance": "28.65"
+		}]
+	}, {
+		"id": 98548074,
+		"group_id": 712704,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Swimming ",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": null,
+		"next_repeat": null,
+		"details": "",
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "split",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "5.55",
+		"currency_code": "GBP",
+		"repayments": [],
+		"date": "2014-06-01T12:22:25Z",
+		"created_at": "2014-06-01T12:22:35Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-01T12:22:35Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 24,
+			"name": "Sports"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "5.55",
+			"owed_share": "5.55",
+			"net_balance": "0.0"
+		}]
+	}, {
+		"id": 98511442,
+		"group_id": 712704,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Office fruit ",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": null,
+		"next_repeat": null,
+		"details": "",
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "split",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "1.84",
+		"currency_code": "GBP",
+		"repayments": [],
+		"date": "2014-06-01T08:53:26Z",
+		"created_at": "2014-06-01T08:53:39Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-01T08:53:39Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 12,
+			"name": "Groceries"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "1.84",
+			"owed_share": "1.84",
+			"net_balance": "0.0"
+		}]
+	}, {
+		"id": 98511405,
+		"group_id": 712704,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Porridge and milk",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": "",
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "split",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "1.89",
+		"currency_code": "GBP",
+		"repayments": [],
+		"date": "2014-06-01T08:53:22Z",
+		"created_at": "2014-06-01T08:53:22Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2014-06-01T08:53:22Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 12,
+			"name": "Groceries"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "1.89",
+			"owed_share": "1.89",
+			"net_balance": "0.0"
+		}]
+	}]
+}

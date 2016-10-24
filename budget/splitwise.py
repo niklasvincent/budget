@@ -60,9 +60,10 @@ class Splitwise(object):
         if updated_after is not None and isinstance(updated_after, datetime):
             url_parameters = {"updated_after" : updated_after.isoformat()}
 
+        categories = self.get_categories()
+
         raw_expenses = self.request(self._build_url("get_expenses", url_parameters)).get("expenses")
         processed_expenses = []
-        categories = self.get_categories()
 
         for e in filter(self._is_applicable_expense, raw_expenses):
             id = int("".join([str(self.person.user_id), str(e.get("id"))]))
