@@ -141,8 +141,7 @@ class TestSplitwise(unittest.TestCase):
         expenses = splitwise.get_expenses(updated_after=datetime(2015, 4, 18, 15, 30, 35))
         self.assertEquals(
             requested_urls[1],
-            "https://secure.splitwise.com/api/v3.0/get_expenses?updated_after=2015-04-18T15%3A30%3A35",
-            "Wrong URL requested"
+            "https://secure.splitwise.com/api/v3.0/get_expenses?updated_after=2015-04-18"
         )
 
 

@@ -65,7 +65,7 @@ class Splitwise(object):
         """Get all expenses"""
         url_parameters = {"limit": "0"}
         if updated_after is not None and isinstance(updated_after, datetime):
-            url_parameters = {"updated_after" : updated_after.isoformat()}
+            url_parameters = {"updated_after" : updated_after.date().isoformat()}
 
         categories = self.get_categories()
 
