@@ -29,13 +29,21 @@ class TestSplitwise(unittest.TestCase):
     def testBuildUrl(self):
         splitwise = Splitwise(self.consumer, self.person)
         url = splitwise._build_url("get_expenses", {"limit": "0"})
-        self.assertEquals(url, "https://secure.splitwise.com/api/v3.0/get_expenses?limit=0", "URL does not match")
+        self.assertEquals(
+            url,
+            "https://secure.splitwise.com/api/v3.0/get_expenses?limit=0",
+            "URL does not match"
+        )
 
     def testParseDateWithoutTimeZone(self):
         splitwise = Splitwise(self.consumer, self.person)
         unaware = datetime(2015, 4, 18, 15, 30, 35)
         parsed = splitwise._parse_date("2015-04-18T15:30:35Z")
-        self.assertEqual(parsed, unaware, "Datetime is not time zone unaware or not parsed correctly")
+        self.assertEqual(
+            parsed,
+            unaware,
+            "Datetime is not time zone unaware or not parsed correctly"
+        )
 
     def testGetUserShareNonZero(self):
         splitwise = Splitwise(self.consumer, self.person)
@@ -62,12 +70,18 @@ class TestSplitwise(unittest.TestCase):
     def testNonZeroSumExpenseIsIncluded(self):
         splitwise = Splitwise(self.consumer, self.person)
         expenses = self.loadJson("data/expenses/non-zero-sum-expense.json")
-        self.assertTrue(splitwise._is_applicable_expense(expenses.get("expenses")[0]), "Expense should be applicable")
+        self.assertTrue(
+            splitwise._is_applicable_expense(expenses.get("expenses")[0]),
+            "Expense should be applicable"
+        )
 
     def testZeroSumExpenseIsExcluded(self):
         splitwise = Splitwise(self.consumer, self.person)
         expenses = self.loadJson("data/expenses/zero-sum-expense.json")
-        self.assertFalse(splitwise._is_applicable_expense(expenses.get("expenses")[0]), "Expense should be non-applicable")
+        self.assertFalse(
+            splitwise._is_applicable_expense(expenses.get("expenses")[0]),
+            "Expense should be non-applicable"
+        )
 
 
 def main():
