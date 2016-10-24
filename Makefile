@@ -1,5 +1,5 @@
 test-all:
-	./tests/run-tests.sh
+	. ./venv/bin/activate && ./tests/run-tests.sh
 
 virtualenv:
 	virtualenv venv
