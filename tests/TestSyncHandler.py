@@ -27,6 +27,32 @@ class TestSyncHandler(unittest.TestCase):
             data = json.load(f)
         return data
 
+    def _splitwise_with_mocked_expenses(self, filename):
+        expenses = self._load_json(filename)
+        categories = self._load_json("data/categories.json")
+        m = Mock()
+
+        self.requested_urls = []
+
+        def mock_request(url):
+            self.requested_urls.append(url)
+            if "get_expenses" in url:
+                return expenses
+            if "get_categories" in url:
+                return categories
+
+        m.side_effect = mock_request
+        self.splitwise.request = m
+
+    def _fixer_with_mocked_conversion_rate(self):
+        m = Mock()
+
+        def mock_currency_conversion(for_date, from_currency, to_currency):
+            return 0.09
+
+        m.side_effect = mock_currency_conversion
+        self.fixer.get_conversion_rate = m
+
     def setUp(self):
         self.person = Person("Test User", 1234, "GBP", "abc", "xyz")
         self.consumer = oauth2.Consumer("def", "jkl")
@@ -58,29 +84,10 @@ class TestSyncHandler(unittest.TestCase):
             to_currency="GBP",
             rate=0.08
         )
-        m = Mock()
 
-        def mock_currency_conversion(for_date, from_currency, to_currency):
-            return 0.09
-
-        m.side_effect = mock_currency_conversion
-        self.fixer.get_conversion_rate = m
-
-        expenses = self._load_json("data/expenses/mixed-expenses-sync.json")
-        categories = self._load_json("data/categories.json")
-        m = Mock()
-
-        requested_urls = []
-
-        def mock_request(url):
-            requested_urls.append(url)
-            if "get_expenses" in url:
-                return expenses
-            if "get_categories" in url:
-                return categories
-
-        m.side_effect = mock_request
-        self.splitwise.request = m
+        # Mock external services
+        self._splitwise_with_mocked_expenses("data/expenses/mixed-expenses-sync.json")
+        self._fixer_with_mocked_conversion_rate()
 
         self.sync_handler.execute()
 
@@ -121,26 +128,11 @@ class TestSyncHandler(unittest.TestCase):
                 expected[index][3],
             )
 
-
-            expenses_with_deletion = self._load_json("data/expenses/mixed-expenses-sync-deletion.json")
-            categories = self._load_json("data/categories.json")
-            m = Mock()
-
-            requested_urls = []
-
-
-            def mock_request(url):
-                requested_urls.append(url)
-                if "get_expenses" in url:
-                    return expenses_with_deletion
-                if "get_categories" in url:
-                    return categories
-
-
-            m.side_effect = mock_request
-            self.splitwise.request = m
+            # Mock external service again to cause deletion of expense
+            self._splitwise_with_mocked_expenses("data/expenses/mixed-expenses-sync-deletion.json")
 
             self.sync_handler.execute()
+
             self.assertEquals(
                 self.sync_handler.nbr_of_deletes,
                 1
@@ -174,8 +166,6 @@ class TestSyncHandler(unittest.TestCase):
                     expense.created_at.date(),
                     expected_after_deletion[index][3],
                 )
-
-
 
 
 def main():
