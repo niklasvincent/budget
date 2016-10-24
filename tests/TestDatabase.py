@@ -16,8 +16,19 @@ class TestDatabase(unittest.TestCase):
     def testCreate(self):
         db = Database("sqlite:///:memory:")
         db.create_tables()
-        db.session.add(Expense(id=1, user_id=2, created_at=datetime(2016, 10, 22), description='Some description',
-                               category='My Category', cost=50.33))
+        db.session.add(
+            Expense(
+                id=1,
+                user_id=2,
+                created_at=datetime(2016, 10, 22),
+                description='Some description',
+                parent_category='Life',
+                child_category='Groceries',
+                cost=50.33,
+                currency='GBP',
+                original_currency='SEK'
+            )
+        )
 
         db.session.commit()
         expense = db.session.query(Expense).filter_by(id=1).first()
@@ -25,18 +36,23 @@ class TestDatabase(unittest.TestCase):
         self.assertEquals(expense.user_id, 2, 'Wrong user ID')
         self.assertEquals(expense.created_at, datetime(2016, 10, 22), 'Wrong creation time')
         self.assertEquals(expense.description, 'Some description', 'Wrong description')
-        self.assertEquals(expense.category, 'My Category', 'Wrong category')
+        self.assertEquals(expense.parent_category, 'Life', 'Wrong parent category')
+        self.assertEquals(expense.child_category, 'Groceries', 'Wrong child category')
         self.assertEquals(expense.cost, 50.33, 'Wrong cost')
+        self.assertEquals(expense.currency, 'GBP', 'Wrong currency')
+        self.assertEquals(expense.original_currency, 'SEK', 'Wrong original currency')
 
     def testMarker(self):
         db = Database("sqlite:///:memory:")
         db.create_tables()
-        db.add_marker(datetime(2016, 10, 22, 12, 5, 0), True, None)
-        db.add_marker(datetime(2016, 10, 22, 12, 6, 0), False, None)
-        db.add_marker(datetime(2016, 10, 22, 12, 7, 0), False, None)
-        db.add_marker(datetime(2016, 10, 22, 12, 8, 0), True, None)
-        db.add_marker(datetime(2016, 10, 22, 12, 9, 0), False, None)
-        marker = db.get_last_successful_marker()
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 5, 0), user_id=1234, success=True, message=None)
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 6, 0), user_id=1234, success=False, message=None)
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 6, 0), user_id=4567, success=False, message=None)
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 6, 0), user_id=4567, success=True, message=None)
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 7, 0), user_id=1234, success=False, message=None)
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 8, 0), user_id=1234, success=True, message=None)
+        db.add_marker(created_at=datetime(2016, 10, 22, 12, 9, 0), user_id=1234, success=False, message=None)
+        marker = db.get_last_successful_marker(1234)
         self.assertEquals(marker.created_at, datetime(2016, 10, 22, 12, 8, 0), 'Wrong timestamp')
         self.assertEquals(marker.success, True, 'Not successful')
 

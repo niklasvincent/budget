@@ -15,12 +15,12 @@ class Database(object):
     def create_tables(self):
         Base.metadata.create_all(self.engine)
 
-    def add_marker(self, created_at, success, message):
-        self.session.add(Marker(created_at=created_at, success=success, message=message))
+    def add_marker(self, user_id, created_at, success, message):
+        self.session.add(Marker(user_id=user_id, created_at=created_at, success=success, message=message))
         self.session.commit()
 
-    def get_last_successful_marker(self):
-        return self.session.query(Marker).filter_by(success=True).order_by(Marker.created_at.desc()).first()
+    def get_last_successful_marker(self, user_id):
+        return self.session.query(Marker).filter_by(success=True, user_id=user_id).order_by(Marker.created_at.desc()).first()
 
 
 class Expense(Base):
@@ -34,6 +34,7 @@ class Expense(Base):
     parent_category = Column(String)
     child_category = Column(String)
     cost = Column(Float)
+    original_currency = Column(String)
     currency = Column(String)
 
     def __repr__(self):
@@ -52,5 +53,5 @@ class Marker(Base):
     message = Column(String)
 
     def __repr__(self):
-        return "<Marker(id='%s', timestamp='%s', success='%s', message='%s')>" % (
-            self.id, self.timestamp, self.success, self.message)
+        return "<Marker(id='%s', created_at='%s', user_id='%s', success='%s', message='%s')>" % (
+            self.id, self.created_at, self.user_id, self.success, self.message)
