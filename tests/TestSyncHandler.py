@@ -122,6 +122,62 @@ class TestSyncHandler(unittest.TestCase):
             )
 
 
+            expenses_with_deletion = self._load_json("data/expenses/mixed-expenses-sync-deletion.json")
+            categories = self._load_json("data/categories.json")
+            m = Mock()
+
+            requested_urls = []
+
+
+            def mock_request(url):
+                requested_urls.append(url)
+                if "get_expenses" in url:
+                    return expenses_with_deletion
+                if "get_categories" in url:
+                    return categories
+
+
+            m.side_effect = mock_request
+            self.splitwise.request = m
+
+            self.sync_handler.execute()
+            self.assertEquals(
+                self.sync_handler.nbr_of_deletes,
+                1
+            )
+            expenses = self.db.get_expenses(user_id=1234)
+            self.assertEquals(
+                len(expenses),
+                3,
+                "Wrong number of expenses in database after deleting one"
+            )
+
+            expected_after_deletion = [
+                ("Sushi", 4.33, "SEK", date(2016, 5, 8)),
+                ("Licquorice", 3.33, "DKK", date(2016, 5, 8)),
+                ("Groceries", 4.3, "GBP", date(2016, 5, 2))
+            ]
+            for index, expense in enumerate(expenses):
+                self.assertEquals(
+                    expense.description,
+                    expected_after_deletion[index][0],
+                )
+                self.assertEquals(
+                    expense.cost,
+                    expected_after_deletion[index][1],
+                )
+                self.assertEquals(
+                    expense.original_currency,
+                    expected_after_deletion[index][2],
+                )
+                self.assertEquals(
+                    expense.created_at.date(),
+                    expected_after_deletion[index][3],
+                )
+
+
+
+
 def main():
     unittest.main()
 

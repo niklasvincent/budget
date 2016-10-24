@@ -15,6 +15,11 @@ class SyncHandler(object):
         self.nbr_of_deletes = 0
         self.nbr_of_conversions = 0
 
+    def _reset_counters(self):
+        self.nbr_of_updates = 0
+        self.nbr_of_deletes = 0
+        self.nbr_of_conversions = 0
+
     def _handle_currency_conversion(self, expense):
         if expense.currency != self.person.default_currency:
             for_date = expense.created_at.date()
@@ -45,6 +50,8 @@ class SyncHandler(object):
             return expense
 
     def execute(self):
+        self._reset_counters()
+
         time_previous_sync = self.db.get_last_successful_marker_datetime(self.person.user_id)
         time_now = datetime.datetime.now()
 

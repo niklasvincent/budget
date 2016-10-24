@@ -1,0 +1,83 @@
+{
+	"expenses": [{
+	  "id": 123457,
+		"group_id": 659050,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Shoes",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": null,
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "percent",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "127.0",
+		"currency_code": "SEK",
+		"repayments": [{
+			"from": 4567,
+			"to": 1234,
+			"amount": "54.61"
+		}],
+		"date": "2016-05-08T23:00:00Z",
+		"created_at": "2016-05-10T18:51:53Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2016-05-10T18:51:53Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": {
+			"id": 1234,
+			"first_name": "Test",
+			"last_name": "User",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"category": {
+			"id": 14,
+			"name": "Household supplies"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Test",
+				"last_name": "User",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "127.0",
+			"owed_share": "72.39",
+			"net_balance": "54.61"
+		}, {
+			"user": {
+				"id": 4567,
+				"first_name": "Hanna",
+				"last_name": "V",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 4567,
+			"paid_share": "0.0",
+			"owed_share": "54.61",
+			"net_balance": "-54.61"
+		}]
+	}]
+}
