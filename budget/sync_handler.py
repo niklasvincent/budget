@@ -31,7 +31,7 @@ class SyncHandler(object):
                     from_currency=from_currency,
                     to_currency=to_currency
                 )
-                currency_conversion = self.db.add_currency_conversion(
+                self.db.add_currency_conversion(
                     for_date=for_date,
                     from_currency=from_currency,
                     to_currency=to_currency,

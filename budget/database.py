@@ -73,6 +73,11 @@ class Database(object):
         return currency_conversion
 
 
+    def get_expenses(self, user_id):
+        return self.session.query(Expense).filter_by(user_id=user_id).order_by(
+            Expense.created_at.desc()).all()
+
+
 class Expense(Base):
     __tablename__ = 'expenses'
 
