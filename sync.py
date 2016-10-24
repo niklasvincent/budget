@@ -103,6 +103,7 @@ def main(config_filename):
                     "%d records added/updated, %d records deleted, %d currency conversions performed" %
                     (last_marker.nbr_of_updates, last_marker.nbr_of_deletes, last_marker.nbr_of_conversions)
                 )
+        sys.exit(0)
 
 
 if __name__ == '__main__':
