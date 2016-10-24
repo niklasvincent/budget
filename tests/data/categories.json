@@ -1,0 +1,546 @@
+{
+  "categories": [
+    {
+      "id": 19,
+      "name": "Entertainment",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/entertainment/other.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/other.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/other@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 20,
+          "name": "Games",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/entertainment/games.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/games.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/games@2x.png"
+            }
+          }
+        },
+        {
+          "id": 21,
+          "name": "Movies",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/entertainment/movies.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/movies.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/movies@2x.png"
+            }
+          }
+        },
+        {
+          "id": 22,
+          "name": "Music",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/entertainment/music.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/music.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/music@2x.png"
+            }
+          }
+        },
+        {
+          "id": 23,
+          "name": "Other",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/entertainment/other.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/other.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/other@2x.png"
+            }
+          }
+        },
+        {
+          "id": 24,
+          "name": "Sports",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/entertainment/sports.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/sports.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/entertainment/sports@2x.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Food and drink",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/food-and-drink/other.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/other.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/other@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 13,
+          "name": "Dining out",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/food-and-drink/dining-out.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/dining-out.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/dining-out@2x.png"
+            }
+          }
+        },
+        {
+          "id": 12,
+          "name": "Groceries",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/food-and-drink/groceries.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/groceries.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/groceries@2x.png"
+            }
+          }
+        },
+        {
+          "id": 38,
+          "name": "Liquor",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/food-and-drink/liquor.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/liquor.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/liquor@2x.png"
+            }
+          }
+        },
+        {
+          "id": 26,
+          "name": "Other",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/food-and-drink/other.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/other.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/food-and-drink/other@2x.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Home",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/other.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/other.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/other@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 39,
+          "name": "Electronics",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/electronics.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/electronics.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/electronics@2x.png"
+            }
+          }
+        },
+        {
+          "id": 16,
+          "name": "Furniture",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/furniture.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/furniture.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/furniture@2x.png"
+            }
+          }
+        },
+        {
+          "id": 14,
+          "name": "Household supplies",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/household-supplies.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/household-supplies.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/household-supplies@2x.png"
+            }
+          }
+        },
+        {
+          "id": 17,
+          "name": "Maintenance",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/maintenance.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/maintenance.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/maintenance@2x.png"
+            }
+          }
+        },
+        {
+          "id": 4,
+          "name": "Mortgage",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/mortgage.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/mortgage.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/mortgage@2x.png"
+            }
+          }
+        },
+        {
+          "id": 28,
+          "name": "Other",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/other.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/other.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/other@2x.png"
+            }
+          }
+        },
+        {
+          "id": 29,
+          "name": "Pets",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/pets.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/pets.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/pets@2x.png"
+            }
+          }
+        },
+        {
+          "id": 3,
+          "name": "Rent",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/rent.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/rent.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/rent@2x.png"
+            }
+          }
+        },
+        {
+          "id": 30,
+          "name": "Services",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/home/services.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/services.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/home/services@2x.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Life",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/other.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/other.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/other@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 41,
+          "name": "Clothing",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/clothing.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/clothing.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/clothing@2x.png"
+            }
+          }
+        },
+        {
+          "id": 42,
+          "name": "Gifts",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/gifts.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/gifts.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/gifts@2x.png"
+            }
+          }
+        },
+        {
+          "id": 10,
+          "name": "Insurance",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/insurance.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/insurance.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/insurance@2x.png"
+            }
+          }
+        },
+        {
+          "id": 43,
+          "name": "Medical expenses",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/medical-expenses.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/medical-expenses.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/medical-expenses@2x.png"
+            }
+          }
+        },
+        {
+          "id": 44,
+          "name": "Other",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/other.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/other.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/other@2x.png"
+            }
+          }
+        },
+        {
+          "id": 45,
+          "name": "Taxes",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/life/taxes.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/taxes.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/life/taxes@2x.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Transportation",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/other.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/other.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/other@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 46,
+          "name": "Bicycle",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/bicycle.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/bicycle.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/bicycle@2x.png"
+            }
+          }
+        },
+        {
+          "id": 32,
+          "name": "Bus/train",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/bus-train.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/bus-train.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/bus-train@2x.png"
+            }
+          }
+        },
+        {
+          "id": 15,
+          "name": "Car",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/car.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/car.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/car@2x.png"
+            }
+          }
+        },
+        {
+          "id": 33,
+          "name": "Gas/fuel",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/gas-fuel.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/gas-fuel.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/gas-fuel@2x.png"
+            }
+          }
+        },
+        {
+          "id": 47,
+          "name": "Hotel",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/hotel.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/hotel.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/hotel@2x.png"
+            }
+          }
+        },
+        {
+          "id": 34,
+          "name": "Other",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/other.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/other.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/other@2x.png"
+            }
+          }
+        },
+        {
+          "id": 9,
+          "name": "Parking",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/parking.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/parking.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/parking@2x.png"
+            }
+          }
+        },
+        {
+          "id": 35,
+          "name": "Plane",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/plane.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/plane.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/plane@2x.png"
+            }
+          }
+        },
+        {
+          "id": 36,
+          "name": "Taxi",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/transportation/taxi.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/taxi.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/transportation/taxi@2x.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Uncategorized",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/uncategorized/general.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/uncategorized/general.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/uncategorized/general@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 18,
+          "name": "General",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/uncategorized/general.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/uncategorized/general.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/uncategorized/general@2x.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Utilities",
+      "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/other.png",
+      "icon_types": {
+        "slim": {
+          "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/other.png",
+          "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/other@2x.png"
+        }
+      },
+      "subcategories": [
+        {
+          "id": 48,
+          "name": "Cleaning",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/cleaning.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/cleaning.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/cleaning@2x.png"
+            }
+          }
+        },
+        {
+          "id": 5,
+          "name": "Electricity",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/electricity.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/electricity.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/electricity@2x.png"
+            }
+          }
+        },
+        {
+          "id": 6,
+          "name": "Heat/gas",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/heat-gas.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/heat-gas.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/heat-gas@2x.png"
+            }
+          }
+        },
+        {
+          "id": 11,
+          "name": "Other",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/other.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/other.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/other@2x.png"
+            }
+          }
+        },
+        {
+          "id": 37,
+          "name": "Trash",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/trash.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/trash.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/trash@2x.png"
+            }
+          }
+        },
+        {
+          "id": 8,
+          "name": "TV/Phone/Internet",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/tv-phone-internet.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/tv-phone-internet.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/tv-phone-internet@2x.png"
+            }
+          }
+        },
+        {
+          "id": 7,
+          "name": "Water",
+          "icon": "https://s3.amazonaws.com/splitwise/uploads/category/icon/square/utilities/water.png",
+          "icon_types": {
+            "slim": {
+              "small": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/water.png",
+              "large": "https://s3.amazonaws.com/splitwise/uploads/category/icon/slim/utilities/water@2x.png"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

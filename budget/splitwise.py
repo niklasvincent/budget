@@ -28,6 +28,9 @@ class Splitwise(object):
     def request(self, url, method ="GET"):
         """Make HTTP request and deserialise the JSON response"""
         resp, content = self.client.request(url, method)
+        if "get_expenses" in url and self.person.name == "Niklas":
+            with open("/tmp/niklas-expenses.json", "w") as f:
+                f.write(content)
         return json.loads(content)
 
     def _build_url(self, path, query = dict()):
@@ -39,13 +42,13 @@ class Splitwise(object):
         """Parse date from string, ignoring timezone"""
         return dateutil.parser.parse(date, ignoretz=True)
 
-    def _get_user_share(self, expense, user_id):
+    def _get_user_share(self, expense):
         """Get the proportional share for the user ID as part of this expense"""
         users = set([user["user"]["id"] for user in expense["users"]])
         if self.person.user_id in users:
-            owed_share = [user.get("owed_share", 0) for user in expense["users"] if user["user"]["id"] == user_id][0]
-            if owed_share:
-                return owed_share
+            owed_share = [user.get("owed_share", 0) for user in expense["users"] if user["user"]["id"] == self.person.user_id][0]
+            if owed_share is not None:
+                return float(owed_share)
         return 0
 
     def _get_group_id(self, expense):
@@ -57,7 +60,7 @@ class Splitwise(object):
         """Check whether expense is applicable to the current user"""
         if expense.get("deleted_by") or expense.get("creation_method") in ["debt_consolidation", "payment"]:
             return False
-        user_share = self._get_user_share(expense, self.person.user_id)
+        user_share = self._get_user_share(expense)
         return user_share > 0
 
     def get_expenses(self):
@@ -77,6 +80,7 @@ class Splitwise(object):
             child_category = category.name
             user_share = self._get_user_share(e, self.person.user_id)
             group_id = self._get_group_id(e)
+            currency = e.get("currency_code")
 
             expense = Expense(
                 id=id,
@@ -86,7 +90,8 @@ class Splitwise(object):
                 description=description,
                 parent_category=parent_category,
                 child_category=child_category,
-                cost=user_share
+                cost=user_share,
+                currency=currency
             )
 
             processed_expenses.append(expense)

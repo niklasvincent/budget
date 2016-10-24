@@ -34,11 +34,12 @@ class Expense(Base):
     parent_category = Column(String)
     child_category = Column(String)
     cost = Column(Float)
+    currency = Column(String)
 
     def __repr__(self):
-        return "<Expense(id='%s', user_id='%s', date='%s', description='%s', category='%s/%s', cost='%s')>" % (
+        return "<Expense(id='%s', user_id='%s', date='%s', description='%s', category='%s/%s', cost='%s %s')>" % (
             self.id, self.user_id, self.created_at, self.description, self.parent_category,
-            self.child_category, self.cost)
+            self.child_category, self.cost, self.currency)
 
 
 class Marker(Base):

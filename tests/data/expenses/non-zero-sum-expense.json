@@ -1,0 +1,76 @@
+{
+	"expenses": [{
+		"id": 12345,
+		"group_id": 123456,
+		"friendship_id": null,
+		"expense_bundle_id": null,
+		"description": "Groceries ",
+		"repeats": false,
+		"repeat_interval": "never",
+		"email_reminder": false,
+		"email_reminder_in_advance": -1,
+		"next_repeat": null,
+		"details": "",
+		"comments_count": 0,
+		"payment": false,
+		"creation_method": "split",
+		"transaction_method": "offline",
+		"transaction_confirmed": false,
+		"cost": "11.42",
+		"currency_code": "GBP",
+		"repayments": [{
+			"from": 456789,
+			"to": 1234,
+			"amount": "5.71"
+		}],
+		"date": "2016-10-20T11:13:11Z",
+		"created_at": "2016-10-23T11:13:17Z",
+		"created_by": {
+			"id": 1234,
+			"first_name": "Joe",
+			"last_name": "Smith",
+			"picture": {
+				"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+			}
+		},
+		"updated_at": "2016-10-23T11:13:17Z",
+		"updated_by": null,
+		"deleted_at": null,
+		"deleted_by": null,
+		"category": {
+			"id": 12,
+			"name": "Groceries"
+		},
+		"receipt": {
+			"large": null,
+			"original": null
+		},
+		"users": [{
+			"user": {
+				"id": 1234,
+				"first_name": "Joe",
+				"last_name": "Smith",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 1234,
+			"paid_share": "11.42",
+			"owed_share": "5.71",
+			"net_balance": "5.71"
+		}, {
+			"user": {
+				"id": 456789,
+				"first_name": "Hanna",
+				"last_name": "V",
+				"picture": {
+					"medium": "https://dx0qysuen8cbs.cloudfront.net/assets/fat_rabbit.png"
+				}
+			},
+			"user_id": 456789,
+			"paid_share": "0.0",
+			"owed_share": "5.71",
+			"net_balance": "-5.71"
+		}]
+	}]
+}
