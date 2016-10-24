@@ -98,6 +98,52 @@ class TestSplitwise(unittest.TestCase):
             8,
             "Wrong number of expenses"
         )
+        expected = [
+            ("Wine for mum", 37.94),
+            ("Carbon Copy Cloner", 33.0),
+            ("Ottolenghi cake", 8.0),
+            ("Salad", 0.7),
+            ("Waitrose", 28.65),
+            ("Swimming", 5.55),
+            ("Office fruit", 1.84),
+            ("Porridge and milk", 1.89)
+        ]
+        for index, expense in enumerate(expenses):
+            self.assertEquals(
+                expense.description,
+                expected[index][0],
+                "Wrong description %s != %s" % (expense.description, expected[index][0])
+            )
+            self.assertEquals(
+                expense.cost,
+                expected[index][1],
+                "Wrong cost %s != %s" % (expense.cost, expected[index][1])
+            )
+
+
+    def testGetExpensesUpdatedAfter(self):
+        splitwise = Splitwise(self.consumer, self.person)
+        expenses = self._load_json("data/expenses/mixed-expenses.json")
+        categories = self._load_json("data/categories.json")
+        m = Mock()
+
+        requested_urls = []
+
+        def mock_request(url):
+            requested_urls.append(url)
+            if "get_expenses" in url:
+                return expenses
+            if "get_categories" in url:
+                return categories
+
+        m.side_effect = mock_request
+        splitwise.request = m
+        expenses = splitwise.get_expenses(updated_after=datetime(2015, 4, 18, 15, 30, 35))
+        self.assertEquals(
+            requested_urls[1],
+            "https://secure.splitwise.com/api/v3.0/get_expenses?updated_after=2015-04-18T15%3A30%3A35",
+            "Wrong URL requested"
+        )
 
 
 def main():
