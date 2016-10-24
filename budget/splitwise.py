@@ -1,16 +1,10 @@
-import hashlib
 import json
-import os
-import sys
-import time
 import urllib
-import urllib2
-import urlparse
-from collections import defaultdict, namedtuple
-from datetime import date, timedelta, datetime
+from collections import namedtuple
+from datetime import datetime
 
-import oauth2
 import dateutil.parser
+import oauth2
 
 from database import Expense
 
