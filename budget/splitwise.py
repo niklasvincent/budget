@@ -53,9 +53,16 @@ class Splitwise(object):
         user_share = self._get_user_share(expense)
         return user_share > 0
 
+    def _is_deletion(self, expense):
+        """Check whether the expense is deleted"""
+        return expense.get("deleted_by", None) is not None
+
+    def _construct_expense_id(self, expense):
+        """Construct unique expense ID"""
+        return int("".join([str(self.person.user_id), str(expense.get("id"))]))
+
     def get_expenses(self, updated_after=None):
         """Get all expenses"""
-        # TODO: What to do with deleted?! Return separate list?
         url_parameters = {"limit": "0"}
         if updated_after is not None and isinstance(updated_after, datetime):
             url_parameters = {"updated_after" : updated_after.isoformat()}
@@ -63,10 +70,12 @@ class Splitwise(object):
         categories = self.get_categories()
 
         raw_expenses = self.request(self._build_url("get_expenses", url_parameters)).get("expenses")
-        processed_expenses = []
+        new_expenses = []
+
+        deleted_expenses = []
 
         for e in filter(self._is_applicable_expense, raw_expenses):
-            id = int("".join([str(self.person.user_id), str(e.get("id"))]))
+            id = self._construct_expense_id(e)
             user_id = int(self.person.user_id)
             created_at = self._parse_date(e.get("date"))
             description = e.get("description").strip()
@@ -90,8 +99,13 @@ class Splitwise(object):
                 original_currency=currency
             )
 
-            processed_expenses.append(expense)
-        return processed_expenses
+            new_expenses.append(expense)
+
+        for e in filter(self._is_deletion, raw_expenses):
+            id = self._construct_expense_id(e)
+            deleted_expenses.append(id)
+
+        return new_expenses, deleted_expenses
 
     def get_categories(self):
         """Get all categories"""

@@ -72,10 +72,13 @@ class Database(object):
         self.session.commit()
         return currency_conversion
 
-
     def get_expenses(self, user_id):
         return self.session.query(Expense).filter_by(user_id=user_id).order_by(
             Expense.created_at.desc()).all()
+
+    def delete_expense_by_id(self, expense_id):
+        self.session.query(Expense).filter_by(id=expense_id).delete()
+        self.session.commit()
 
 
 class Expense(Base):

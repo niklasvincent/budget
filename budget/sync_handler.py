@@ -49,12 +49,15 @@ class SyncHandler(object):
         time_now = datetime.datetime.now()
 
         try:
-            expenses = self.splitwise.get_expenses(time_previous_sync)
-            for expense in expenses:
-                expense = self._handle_currency_conversion(expense)
-                self.db.session.merge(expense)
-                self.db.session.commit()
+            new_expenses, deleted_expenses = self.splitwise.get_expenses(time_previous_sync)
+            for new_expense in new_expenses:
+                new_expense = self._handle_currency_conversion(new_expense)
+                self.db.session.merge(new_expense)
                 self.nbr_of_updates += 1
+                self.db.session.commit()
+            for deleted_expense_id in deleted_expenses:
+                self.db.delete_expense_by_id(expense_id=deleted_expense_id)
+                self.nbr_of_deletes += 1
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]

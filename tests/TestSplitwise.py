@@ -87,14 +87,14 @@ class TestSplitwise(unittest.TestCase):
 
     def testGetExpenses(self):
         splitwise = Splitwise(self.consumer, self.person)
-        expenses = self._load_json("data/expenses/mixed-expenses.json")
+        new_expenses = self._load_json("data/expenses/mixed-expenses.json")
         categories = self._load_json("data/categories.json")
         m = Mock()
-        m.side_effect = [categories, expenses]
+        m.side_effect = [categories, new_expenses]
         splitwise.request = m
-        expenses = splitwise.get_expenses()
+        new_expenses, deleted_expenses = splitwise.get_expenses()
         self.assertEquals(
-            len(expenses),
+            len(new_expenses),
             8,
             "Wrong number of expenses"
         )
@@ -108,7 +108,7 @@ class TestSplitwise(unittest.TestCase):
             ("Office fruit", 1.84),
             ("Porridge and milk", 1.89)
         ]
-        for index, expense in enumerate(expenses):
+        for index, expense in enumerate(new_expenses):
             self.assertEquals(
                 expense.description,
                 expected[index][0],

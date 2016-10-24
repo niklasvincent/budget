@@ -100,7 +100,7 @@ def main(config_filename):
             else:
                 logging.info("Sync for user %s successful" % person.name)
                 logging.info(
-                    "%d records added/updated, %d records deleted, %d currency conversions performed" %
+                    "%d record(s) added/updated, %d record(s) deleted, %d currency conversion(s) performed" %
                     (last_marker.nbr_of_updates, last_marker.nbr_of_deletes, last_marker.nbr_of_conversions)
                 )
         sys.exit(0)
