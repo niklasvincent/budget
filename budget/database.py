@@ -15,12 +15,30 @@ class Database(object):
     def create_tables(self):
         Base.metadata.create_all(self.engine)
 
-    def add_marker(self, user_id, created_at, success, message):
-        self.session.add(Marker(user_id=user_id, created_at=created_at, success=success, message=message))
+    def add_marker(self, user_id, created_at, success, nbr_of_updates, nbr_of_deletes, message):
+        self.session.add(
+            Marker(
+                user_id=user_id,
+                created_at=created_at,
+                success=success,
+                nbr_of_updates=nbr_of_updates,
+                nbr_of_deletes=nbr_of_deletes,
+                message=message
+            )
+        )
         self.session.commit()
 
     def get_last_successful_marker(self, user_id):
         return self.session.query(Marker).filter_by(success=True, user_id=user_id).order_by(Marker.created_at.desc()).first()
+
+    def get_last_successful_marker_datetime(self, user_id):
+        marker = self.session.query(Marker)\
+            .filter_by(success=True, user_id=user_id)\
+            .order_by(Marker.created_at.desc())\
+            .first()
+        if marker is not None:
+            return marker.created_at
+        return None
 
 
 class Expense(Base):
@@ -50,8 +68,10 @@ class Marker(Base):
     created_at = Column(DateTime)
     user_id = Column(Integer)
     success = Column(Boolean)
+    nbr_of_updates = Column(Integer)
+    nbr_of_deletes = Column(Integer)
     message = Column(String)
 
     def __repr__(self):
-        return "<Marker(id='%s', created_at='%s', user_id='%s', success='%s', message='%s')>" % (
-            self.id, self.created_at, self.user_id, self.success, self.message)
+        return "<Marker(id='%s', created_at='%s', user_id='%s', success='%s', deletes='%s', updates='%s', message='%s')>" % (
+            self.id, self.created_at, self.user_id, self.success, self.nbr_of_deletes, self.nbr_of_updates, self.message)

@@ -1,5 +1,3 @@
-from collections import defaultdict, namedtuple
-from datetime import date, timedelta, datetime
 import hashlib
 import json
 import os
@@ -8,7 +6,8 @@ import time
 import urllib
 import urllib2
 import urlparse
-from collections import namedtuple
+from collections import defaultdict, namedtuple
+from datetime import date, timedelta, datetime
 
 import oauth2
 import dateutil.parser
@@ -63,10 +62,14 @@ class Splitwise(object):
         user_share = self._get_user_share(expense)
         return user_share > 0
 
-    def get_expenses(self):
+    def get_expenses(self, updated_after=None):
         """Get all expenses"""
         # TODO: What to do with deleted?! Return separate list?
-        raw_expenses = self.request(self._build_url("get_expenses", {"limit": "0"})).get("expenses")
+        url_parameters = {"limit": "0"}
+        if updated_after is not None and isinstance(updated_after, datetime):
+            url_parameters = {"updated_after" : updated_after.isoformat()}
+
+        raw_expenses = self.request(self._build_url("get_expenses", url_parameters)).get("expenses")
         processed_expenses = []
         categories = self.get_categories()
 
