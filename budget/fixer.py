@@ -56,7 +56,7 @@ class Fixer(object):
 
     def _conversionsForDate(self, date):
         """Retrieve currency conversions for date"""
-        query_url = self.base_url + "/%s" % date.isoformat()
+        query_url = self.base_url + date.isoformat()
         content = self._request(query_url)
         return json.loads(content)
 
