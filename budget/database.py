@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, Date, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -15,7 +15,17 @@ class Database(object):
     def create_tables(self):
         Base.metadata.create_all(self.engine)
 
-    def add_marker(self, user_id, created_at, success, nbr_of_updates, nbr_of_deletes, message):
+    def purge_expenses(self):
+        nbr_of_purged_expenses = self.session.query(Expense).delete()
+        self.session.commit()
+        return nbr_of_purged_expenses
+
+    def purge_markers(self):
+        nbr_of_purged_markers = self.session.query(Marker).delete()
+        self.session.commit()
+        return nbr_of_purged_markers
+
+    def add_marker(self, user_id, created_at, success, nbr_of_updates, nbr_of_deletes, nbr_of_conversions, message):
         self.session.add(
             Marker(
                 user_id=user_id,
@@ -23,6 +33,7 @@ class Database(object):
                 success=success,
                 nbr_of_updates=nbr_of_updates,
                 nbr_of_deletes=nbr_of_deletes,
+                nbr_of_conversions=nbr_of_conversions,
                 message=message
             )
         )
@@ -30,6 +41,9 @@ class Database(object):
 
     def get_last_successful_marker(self, user_id):
         return self.session.query(Marker).filter_by(success=True, user_id=user_id).order_by(Marker.created_at.desc()).first()
+
+    def get_last_marker(self, user_id):
+        return self.session.query(Marker).filter_by(user_id=user_id).order_by(Marker.created_at.desc()).first()
 
     def get_last_successful_marker_datetime(self, user_id):
         marker = self.session.query(Marker)\
@@ -39,6 +53,24 @@ class Database(object):
         if marker is not None:
             return marker.created_at
         return None
+
+    def get_currency_conversion_rate(self, for_date, from_currency, to_currency):
+        currency_conversion = self.session.query(CurrencyConversion)\
+            .filter_by(for_date=for_date, from_currency=from_currency, to_currency=to_currency)\
+            .first()
+        if currency_conversion is not None:
+            return currency_conversion.rate
+
+    def add_currency_conversion(self, for_date, from_currency, to_currency, rate):
+        currency_conversion = CurrencyConversion(
+            for_date=for_date,
+            from_currency=from_currency,
+            to_currency=to_currency,
+            rate=rate
+        )
+        self.session.add(currency_conversion)
+        self.session.commit()
+        return currency_conversion
 
 
 class Expense(Base):
@@ -70,8 +102,26 @@ class Marker(Base):
     success = Column(Boolean)
     nbr_of_updates = Column(Integer)
     nbr_of_deletes = Column(Integer)
+    nbr_of_conversions = Column(Integer)
     message = Column(String)
 
     def __repr__(self):
-        return "<Marker(id='%s', created_at='%s', user_id='%s', success='%s', deletes='%s', updates='%s', message='%s')>" % (
-            self.id, self.created_at, self.user_id, self.success, self.nbr_of_deletes, self.nbr_of_updates, self.message)
+        return """<Marker(id='%s', created_at='%s', user_id='%s',
+        success='%s', deletes='%s', updates='%s', currency_conversions='%s', message='%s')>""" % (
+            self.id, self.created_at, self.user_id, self.success, self.nbr_of_deletes, self.nbr_of_updates,
+            self.nbr_of_conversions, self.message
+        )
+
+
+class CurrencyConversion(Base):
+    __tablename__ = 'currency_conversions'
+
+    id = Column(Integer, primary_key=True)
+    for_date = Column(Date)
+    from_currency = Column(String)
+    to_currency = Column(String)
+    rate = Column(Float)
+
+    def __repr__(self):
+        return "<CurrencyConversion(id='%s', for_date='%s', from_currency='%s', to_currency='%s', rate='%s')>" % (
+            self.id, self.for_date, self.from_currency, self.to_currency, self.rate)

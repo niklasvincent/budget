@@ -87,6 +87,7 @@ class TestDatabase(unittest.TestCase):
             success=True,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         db.add_marker(
@@ -95,6 +96,7 @@ class TestDatabase(unittest.TestCase):
             success=False,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         db.add_marker(
@@ -103,6 +105,7 @@ class TestDatabase(unittest.TestCase):
             success=False,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         db.add_marker(
@@ -111,6 +114,7 @@ class TestDatabase(unittest.TestCase):
             success=True,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         db.add_marker(
@@ -119,6 +123,7 @@ class TestDatabase(unittest.TestCase):
             success=False,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         db.add_marker(
@@ -127,6 +132,7 @@ class TestDatabase(unittest.TestCase):
             success=True,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         db.add_marker(
@@ -135,6 +141,7 @@ class TestDatabase(unittest.TestCase):
             success=False,
             nbr_of_deletes=0,
             nbr_of_updates=10,
+            nbr_of_conversions=2,
             message=None
         )
         marker = db.get_last_successful_marker(1234)
