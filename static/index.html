@@ -1,0 +1,35 @@
+<head>
+    <title>Budget</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Your budget</h1>
+    <h2>You spent <span id="spent"></span> this month</h2>
+
+    <table id="expenses">
+        <thead><td>What?</td><td>When?</td><td>How much?</td></thead>
+    </table>
+
+    <script type="text/javascript">
+        $(function() {
+            $.ajax({
+              url: "/api/v1.0/expenses/last_three_months",
+              // Work with the response
+              success: function(response) {
+                 $('#spent').html(response.total_sum);
+                 $.each(response.expenses, function() {
+                    $('#expenses').append(
+                        '<tr><td>'
+                        + this.description
+                        + '</td><td>'
+                        + this.created_at
+                        + '</td><td>'
+                        + this.cost +
+                        '</td></tr>'
+                    );
+                });
+              }
+          });
+        });
+    </script>
+</body>
