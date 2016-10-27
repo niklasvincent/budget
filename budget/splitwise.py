@@ -84,12 +84,14 @@ class Splitwise(object):
             child_category = category.name
             user_share = self._get_user_share(e)
             group_id = self._get_group_id(e)
+            group = self.person.groups[group_id]
             currency = e.get("currency_code")
 
             expense = Expense(
                 id=id,
                 user_id=user_id,
                 group_id=group_id,
+                group=group,
                 created_at=created_at,
                 description=description,
                 parent_category=parent_category,

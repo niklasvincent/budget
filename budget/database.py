@@ -94,6 +94,7 @@ class Expense(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer)
     group_id = Column(Integer)
+    group = Column(String)
     created_at = Column(DateTime)
     description = Column(String)
     parent_category = Column(String)
@@ -110,6 +111,7 @@ class Expense(Base):
     def as_dictionary(self):
         return {
             "id": self.id,
+            "group": self.group,
             "created_at": self.created_at.date().isoformat(),
             "description": self.description,
             "child_category": self.child_category,
