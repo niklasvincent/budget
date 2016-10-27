@@ -76,6 +76,13 @@ class Database(object):
         return self.session.query(Expense).filter_by(user_id=user_id).order_by(
             Expense.created_at.desc()).all()
 
+    def get_expenses_between(self, user_id, start_date, end_date):
+        return self.session.query(Expense)\
+            .filter_by(user_id=user_id)\
+            .filter(Expense.created_at.between(start_date, end_date))\
+            .order_by(Expense.cost.desc(), Expense.created_at.desc())\
+            .all()
+
     def delete_expense_by_id(self, expense_id):
         self.session.query(Expense).filter_by(id=expense_id).delete()
         self.session.commit()
@@ -99,6 +106,16 @@ class Expense(Base):
         return "<Expense(id='%s', user_id='%s', date='%s', description='%s', category='%s/%s', cost='%s %s')>" % (
             self.id, self.user_id, self.created_at, self.description, self.parent_category,
             self.child_category, self.cost, self.currency)
+
+    def as_dictionary(self):
+        return {
+            "id": self.id,
+            "created_at": self.created_at.date().isoformat(),
+            "description": self.description,
+            "child_category": self.child_category,
+            "parent_category": self.parent_category,
+            "cost": self.cost
+        }
 
 
 class Marker(Base):

@@ -54,7 +54,7 @@ class TestSyncHandler(unittest.TestCase):
         self.fixer.get_conversion_rate = m
 
     def setUp(self):
-        self.person = Person("Test User", 1234, "GBP", "abc", "xyz")
+        self.person = Person("Test User", 1234, "test@example.com", "GBP", "abc", "xyz")
         self.consumer = oauth2.Consumer("def", "jkl")
         self.splitwise = Splitwise(self.consumer, self.person)
         self.db = Database("sqlite:///:memory:")
