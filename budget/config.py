@@ -1,9 +1,12 @@
+import sys
 from collections import defaultdict
+from urlparse import urlparse
 
 
 import yaml
 
 
+import boto3
 import oauth2
 
 
@@ -24,18 +27,35 @@ class Person(object):
 
 class Config(object):
 
-    def __init__(self, config_filename):
-        self.data = self._load_config(config_filename)
-        assert self.data != None, "Got no data from configuration file %s" % config_filename
-        assert self.data.get("splitwise") != None, "Configuration file %s does not have a splitwise section" %\
-                                                   config_filename
+    def __init__(self, config_url):
+        self.data = self._load_config(config_url)
+        assert self.data != None, "Got no data from configuration file %s" % config_url
+        assert self.data.get("splitwise") != None, "Configuration file %s does not have a splitwise section" % \
+                                                   config_url
 
         self.users = {}
         self._populate_user_lookup()
 
-    def _load_config(self, config_filename):
-        with open(config_filename) as f:
-            return yaml.load(f)
+    def _load_config(self, config_url):
+        try:
+            url = urlparse(config_url)
+        except Exception as e:
+            print "Could not parse config URL '%s': %s" % (config_url, e)
+            sys.exit(1)
+
+        if url.scheme == "s3":
+            session = boto3.Session()
+            s3 = session.client('s3')
+            bucket = url.netloc
+            key = url.path[1:]
+            response = s3.get_object(
+                Bucket=bucket,
+                Key=key
+            )
+            return yaml.load(response['Body'].read().decode('utf-8'))
+        else:
+            with open(url.path) as f:
+                return yaml.load(f)
 
     def _populate_user_lookup(self):
         for person in self.get_people():

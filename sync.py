@@ -29,6 +29,11 @@ def parse_arguments():
     # Parse command line arguments
     args_parser = argparse.ArgumentParser()
     args_parser.add_argument(
+        "--config",
+        required=True,
+        help="Configuration path or S3 URL",
+    )
+    args_parser.add_argument(
         "--debug",
         help="Increase verbosity",
         action="store_true"
@@ -52,10 +57,10 @@ def parse_arguments():
     return args
 
 
-def main(config_filename):
+def main():
     args = parse_arguments()
 
-    config = Config(config_filename)
+    config = Config(args.config)
     db = Database(config.get_database_uri())
     db.create_tables()
 
@@ -107,4 +112,4 @@ def main(config_filename):
 
 
 if __name__ == '__main__':
-    main("/etc/budget.conf")
+    main()

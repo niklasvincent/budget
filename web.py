@@ -1,4 +1,5 @@
 #!flask/bin/python
+import argparse
 from functools import wraps
 
 from flask import Flask, jsonify, g, redirect, url_for, session, send_from_directory
@@ -9,7 +10,26 @@ from budget.aggregator import Aggregator
 from budget.config import Config
 from budget.database import *
 
-config = Config("/etc/budget.conf")
+
+def parse_arguments():
+    # Parse command line arguments
+    args_parser = argparse.ArgumentParser()
+    args_parser.add_argument(
+        "--config",
+        required=True,
+        help="Configuration path or S3 URL",
+    )
+    args_parser.add_argument(
+        "--debug",
+        help="Increase verbosity",
+        action="store_true"
+    )
+    args = args_parser.parse_args()
+    return args
+
+args = parse_arguments()
+
+config = Config(args.config)
 db = Database(config.get_database_uri())
 aggregator = Aggregator(db)
 
@@ -63,8 +83,6 @@ def login_success(token, profile):
 def login_failure(e):
   return jsonify(error=str(e))
 
-from datetime import date
-
 @app.route("/api/v1.0/expenses/this_month")
 @login_required
 def get_expenses_for_last_three_months():
@@ -72,4 +90,4 @@ def get_expenses_for_last_three_months():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=args.debug)
