@@ -1,0 +1,9 @@
+body {
+  margin-top: 25px;
+}
+
+h2.summary {
+    font-size: 3em;
+    text-align: center;
+    padding-bottom: 25px;
+}

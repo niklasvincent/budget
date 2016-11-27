@@ -1,35 +1,40 @@
-<head>
-    <title>Budget</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-<body>
-    <h1>Your budget</h1>
-    <h2>You spent <span id="spent"></span> this month</h2>
-
-    <table id="expenses">
-        <thead><td>What?</td><td>When?</td><td>How much?</td></thead>
-    </table>
-
-    <script type="text/javascript">
-        $(function() {
-            $.ajax({
-              url: "/api/v1.0/expenses/last_three_months",
-              // Work with the response
-              success: function(response) {
-                 $('#spent').html(response.total_sum);
-                 $.each(response.expenses, function() {
-                    $('#expenses').append(
-                        '<tr><td>'
-                        + this.description
-                        + '</td><td>'
-                        + this.created_at
-                        + '</td><td>'
-                        + this.cost +
-                        '</td></tr>'
-                    );
-                });
-              }
-          });
-        });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <link rel="stylesheet" media="all" href="/static/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <script id="summary-template" type="text/x-handlebars-template">
+      <h2 class="summary">£{{total}} spent this month</h2>
     </script>
-</body>
+
+    <script id="expense-template" type="text/x-handlebars-template">
+      <h2>{{group}} (£{{total}})</h2>
+      <table class="table table-striped table-bordered table-hover">
+          <thead class="thead-default">
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+      {{#each expenses}}
+            <tr><td class="date">{{created_at}}</td><td>{{description}}</td><td class="cost">£{{cost}}</td></tr>
+      {{/each}}
+          </tbody>
+      </table>
+    </script>
+
+    <div id="main" class="container"></div><!-- /.container -->
+
+    <script src="/static/main.js"></script>
+
+  </body>
+</html>
