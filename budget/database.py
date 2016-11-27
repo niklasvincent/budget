@@ -116,7 +116,7 @@ class Expense(Base):
             "description": self.description,
             "child_category": self.child_category,
             "parent_category": self.parent_category,
-            "cost": self.cost
+            "cost": '%.2f' % self.cost
         }
 
 

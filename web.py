@@ -5,11 +5,13 @@ from flask import Flask, jsonify, g, redirect, url_for, session, send_from_direc
 from flask_login import LoginManager, login_user
 from flask_oauth2_login import GoogleLogin
 
+from budget.aggregator import Aggregator
 from budget.config import Config
 from budget.database import *
 
 config = Config("/etc/budget.conf")
 db = Database(config.get_database_uri())
+aggregator = Aggregator(db)
 
 def login_required(f):
     @wraps(f)
@@ -63,15 +65,11 @@ def login_failure(e):
 
 from datetime import date
 
-@app.route("/api/v1.0/expenses/last_three_months")
+@app.route("/api/v1.0/expenses/this_month")
 @login_required
 def get_expenses_for_last_three_months():
-    expenses = db.get_expenses_between(user_id=g.user.user_id, start_date=date(2016, 10, 1), end_date=date(2016, 10, 31))
-    total_sum = sum([e.cost for e in expenses])
-    return jsonify({
-        "expenses": [e.as_dictionary() for e in expenses],
-        "total_sum": total_sum
-    })
+    result = aggregator.get_expenses_for_this_month(person=g.user)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True)
