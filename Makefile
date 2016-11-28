@@ -4,3 +4,6 @@ test-all:
 virtualenv:
 	virtualenv venv
 	. ./venv/bin/activate && pip install -r requirements.txt
+
+docker:
+	docker build -f Dockerfile-sync -t budget-sync .
