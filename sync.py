@@ -1,12 +1,16 @@
 import argparse
 import logging
 import sys
+import time
 
 from budget.config import Config
 from budget.database import *
 from budget.fixer import Fixer
 from budget.splitwise import Splitwise
 from budget.sync_handler import SyncHandler
+
+
+import schedule
 
 
 def get_logger(debug=False):
@@ -53,37 +57,50 @@ def parse_arguments():
         help="Perform sync of expenses from Splitwise",
         action="store_true"
     )
+    args_parser.add_argument(
+        "--periodic",
+        help="Perform periodic sync of expenses from Splitwise",
+        action="store_true"
+    )
     args = args_parser.parse_args()
     return args
 
 
-def main():
-    args = parse_arguments()
-
+def set_up(args):
     config = Config(args.config)
     db = Database(config.get_database_uri())
     db.create_tables()
 
     fixer = Fixer()
 
-    logging = get_logger(args.debug)
+    logger = get_logger(args.debug)
 
-    if args.purge_expenses:
-        logging.info("Asked to purge all expenses in database")
+    return config, db, fixer, logger
+
+
+def main():
+    args = parse_arguments()
+
+    config, db, fixer, logger = set_up(args)
+
+    def purge_expenses():
+        logger.info("Asked to purge all expenses in database")
         nbr_of_purged_records = db.purge_expenses()
-        logging.info("%d expenses purged" % nbr_of_purged_records)
-        sys.exit(0)
+        logger.info("%d expenses purged" % nbr_of_purged_records)
 
-    if args.purge_markers:
-        logging.info("Asked to purge all markers in database")
+    def purge_markers():
+        logger.info("Asked to purge all markers in database")
         nbr_of_purged_records = db.purge_markers()
-        logging.info("%d markers purged" % nbr_of_purged_records)
-        sys.exit(0)
+        logger.info("%d markers purged" % nbr_of_purged_records)
 
-    if args.sync:
-        logging.info("Starting sync with Splitwise")
+    def purge_all():
+        purge_expenses()
+        purge_markers()
+
+    def sync_expenses():
+        logger.info("Starting sync with Splitwise")
         for person in config.get_people():
-            logging.info("Syncing for user %s" % person.name)
+            logger.info("Syncing for user %s" % person.name)
             splitwise = Splitwise(config.get_splitwise_consumer(), person)
             sync_handler = SyncHandler(
                 db=db,
@@ -97,18 +114,34 @@ def main():
             last_marker = db.get_last_marker(user_id=person.user_id)
 
             if not last_marker.success:
-                logging.error("Sync for user %s failed: %s" % (person.name, last_marker.message))
+                logger.error("Sync for user %s failed: %s" % (person.name, last_marker.message))
                 last_successful_marker = db.get_last_successful_marker(user_id=person.user_id)
-                logging.info(
+                logger.info(
                     "Last successful sync for user %s was at %s" % (person.name, last_successful_marker.created_at)
                 )
             else:
-                logging.info("Sync for user %s successful" % person.name)
-                logging.info(
+                logger.info("Sync for user %s successful" % person.name)
+                logger.info(
                     "%d record(s) added/updated, %d record(s) deleted, %d currency conversion(s) performed" %
                     (last_marker.nbr_of_updates, last_marker.nbr_of_deletes, last_marker.nbr_of_conversions)
                 )
-        sys.exit(0)
+
+    if args.purge_expenses:
+        purge_expenses()
+
+    if args.purge_markers:
+        purge_markers()
+
+    if args.sync and not args.periodic:
+        sync_expenses()
+
+    if args.periodic:
+        logger.info("Scheduling periodic jobs")
+        schedule.every(1).minutes.do(sync_expenses)
+        schedule.every().monday.do(purge_all)
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
 
 
 if __name__ == '__main__':
