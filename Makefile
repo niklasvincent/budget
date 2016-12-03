@@ -6,4 +6,7 @@ virtualenv:
 	. ./venv/bin/activate && pip install -r requirements.txt
 
 docker:
-	docker build -f Dockerfile-sync -t budget-sync .
+	docker build -f Dockerfile -t budget .
+
+travis: test-all
+	docker build -f Dockerfile -t budget .

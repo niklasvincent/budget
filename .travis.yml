@@ -10,4 +10,15 @@ before_install:
 
 install: make virtualenv
 
-script: make test-all
+script: make travis
+
+sudo: required
+
+services:
+  - docker
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push nlindblad/budget;
+    fi
