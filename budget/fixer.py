@@ -45,6 +45,7 @@ class Fixer(object):
             u'ZAR'
         }
 
+    @classmethod
     def _request(self, url):
         """Retrieve from API"""
         try:

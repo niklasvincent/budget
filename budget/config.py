@@ -36,6 +36,7 @@ class Config(object):
         self.users = {}
         self._populate_user_lookup()
 
+    @classmethod
     def _load_config(self, config_url):
         try:
             url = urlparse(config_url)
@@ -70,6 +71,7 @@ class Config(object):
             self.data["splitwise"]["consumer_secret"]
         )
 
+    @classmethod
     def _get_groups_for_person(self, person):
         default_group = [group for group in person.get("groups") if group.get("default")][0]["default"]
         groups = defaultdict(lambda: default_group)
