@@ -11,6 +11,7 @@ class Aggregator(object):
     def __init__(self, db):
         self.db = db
 
+    @classmethod
     def _range_for_month(self, year, month):
         _, last_day = calendar.monthrange(year, month)
         return date(year, month, 1), date(year, month, last_day)

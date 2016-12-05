@@ -22,6 +22,7 @@ from sync_handler import SyncHandler
 
 class TestSyncHandler(unittest.TestCase):
 
+    @classmethod
     def _load_json(self, filename):
         absolute_filename = os.path.abspath(os.path.join(os.path.dirname(__file__), filename))
         with open(absolute_filename, 'r') as f:

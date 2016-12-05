@@ -17,6 +17,7 @@ from fixer import Fixer
 
 class TestFixer(unittest.TestCase):
 
+    @classmethod
     def _load_file_content(self, filename):
         absolute_filename = os.path.abspath(os.path.join(os.path.dirname(__file__), filename))
         with open(absolute_filename, 'r') as f:

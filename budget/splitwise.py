@@ -28,6 +28,7 @@ class Splitwise(object):
         query_string = urllib.urlencode(query) if query else ""
         return "%s/%s?%s" % (self.base_url, path, query_string)
 
+    @classmethod
     def _parse_date(self, date):
         """Parse date from string, ignoring timezone"""
         return dateutil.parser.parse(date, ignoretz=True)
@@ -41,6 +42,7 @@ class Splitwise(object):
                 return float(owed_share)
         return 0
 
+    @classmethod
     def _get_group_id(self, expense):
         if expense.get("group_id") is None:
             return 0
@@ -53,6 +55,7 @@ class Splitwise(object):
         user_share = self._get_user_share(expense)
         return user_share > 0
 
+    @classmethod
     def _is_deletion(self, expense):
         """Check whether the expense is deleted"""
         return expense.get("deleted_by", None) is not None
