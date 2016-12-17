@@ -6,7 +6,7 @@ virtualenv:
 	. ./venv/bin/activate && pip install -r requirements.txt
 
 docker:
-	docker build -f Dockerfile -t budget .
+	docker build -f Dockerfile -t nlindblad/budget .
 
 travis: test-all
-	docker build -f Dockerfile -t budget .
+	docker build -f Dockerfile -t nlindblad/budget .
