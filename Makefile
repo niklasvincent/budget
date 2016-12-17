@@ -4,3 +4,9 @@ test-all:
 virtualenv:
 	virtualenv venv
 	. ./venv/bin/activate && pip install -r requirements.txt
+
+docker:
+	docker build -f Dockerfile -t budget .
+
+travis: test-all
+	docker build -f Dockerfile -t budget .

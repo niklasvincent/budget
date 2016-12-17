@@ -90,4 +90,4 @@ def get_expenses_for_last_three_months():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=args.debug)
+    app.run(host= '0.0.0.0', debug=args.debug)

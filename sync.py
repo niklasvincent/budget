@@ -137,7 +137,7 @@ def main():
 
     if args.periodic:
         logger.info("Scheduling periodic jobs")
-        schedule.every(1).minutes.do(sync_expenses)
+        schedule.every(15).minutes.do(sync_expenses)
         schedule.every().monday.do(purge_all)
         while True:
             schedule.run_pending()
