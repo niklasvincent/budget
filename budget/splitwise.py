@@ -30,8 +30,8 @@ class Splitwise(object):
 
     @classmethod
     def _parse_date(self, date):
-        """Parse date from string, ignoring timezone"""
-        return dateutil.parser.parse(date, ignoretz=True)
+        """Parse date from string, including timezone"""
+        return dateutil.parser.parse(date, ignoretz=False)
 
     def _get_user_share(self, expense):
         """Get the proportional share for the user ID as part of this expense"""

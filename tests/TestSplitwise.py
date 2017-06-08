@@ -1,5 +1,6 @@
 import json
 import os
+import pytz
 import sys
 import unittest
 
@@ -40,7 +41,7 @@ class TestSplitwise(unittest.TestCase):
 
     def testParseDateWithoutTimeZone(self):
         splitwise = Splitwise(self.consumer, self.person)
-        unaware = datetime(2015, 4, 18, 15, 30, 35)
+        unaware = datetime(2015, 4, 18, 15, 30, 35, tzinfo=pytz.utc)
         parsed = splitwise._parse_date("2015-04-18T15:30:35Z")
         self.assertEqual(
             parsed,
