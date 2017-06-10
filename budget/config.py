@@ -35,6 +35,7 @@ class Config(object):
 
         self.users = {}
         self._populate_user_lookup()
+        self.pre_authenticated_user = None
 
     @classmethod
     def _load_config(self, config_url):
