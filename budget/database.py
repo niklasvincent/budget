@@ -4,8 +4,8 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
-class Database(object):
 
+class Database(object):
     def __init__(self, database_filename, echo=False):
         self.engine = create_engine(database_filename, echo=echo)
         Session = sessionmaker(bind=self.engine)
@@ -40,23 +40,24 @@ class Database(object):
         self.session.commit()
 
     def get_last_successful_marker(self, user_id):
-        return self.session.query(Marker).filter_by(success=True, user_id=user_id).order_by(Marker.created_at.desc()).first()
+        return self.session.query(Marker).filter_by(success=True, user_id=user_id).order_by(
+            Marker.created_at.desc()).first()
 
     def get_last_marker(self, user_id):
         return self.session.query(Marker).filter_by(user_id=user_id).order_by(Marker.created_at.desc()).first()
 
     def get_last_successful_marker_datetime(self, user_id):
-        marker = self.session.query(Marker)\
-            .filter_by(success=True, user_id=user_id)\
-            .order_by(Marker.created_at.desc())\
+        marker = self.session.query(Marker) \
+            .filter_by(success=True, user_id=user_id) \
+            .order_by(Marker.created_at.desc()) \
             .first()
         if marker is not None:
             return marker.created_at
         return None
 
     def get_currency_conversion_rate(self, for_date, from_currency, to_currency):
-        currency_conversion = self.session.query(CurrencyConversion)\
-            .filter_by(for_date=for_date, from_currency=from_currency, to_currency=to_currency)\
+        currency_conversion = self.session.query(CurrencyConversion) \
+            .filter_by(for_date=for_date, from_currency=from_currency, to_currency=to_currency) \
             .first()
         if currency_conversion is not None:
             return currency_conversion.rate
@@ -77,10 +78,10 @@ class Database(object):
             Expense.created_at.desc()).all()
 
     def get_expenses_between(self, user_id, start_date, end_date):
-        return self.session.query(Expense)\
-            .filter_by(user_id=user_id)\
-            .filter(Expense.created_at.between(start_date, end_date))\
-            .order_by(Expense.cost.desc(), Expense.created_at.desc())\
+        return self.session.query(Expense) \
+            .filter_by(user_id=user_id) \
+            .filter(Expense.created_at.between(start_date, end_date)) \
+            .order_by(Expense.cost.desc(), Expense.created_at.desc()) \
             .all()
 
     def delete_expense_by_id(self, expense_id):
