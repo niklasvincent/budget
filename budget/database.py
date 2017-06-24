@@ -109,6 +109,10 @@ class Expense(Base):
             self.id, self.user_id, self.created_at, self.description, self.parent_category,
             self.child_category, self.cost, self.currency)
 
+    @property
+    def category(self):
+        return "{}/{}".format(self.parent_category, self.child_category)
+
     def as_dictionary(self):
         return {
             "id": self.id,
