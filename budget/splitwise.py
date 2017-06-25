@@ -1,13 +1,14 @@
 import json
 import urllib
 from collections import namedtuple
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import dateutil.parser
 import oauth2
 
 from database import Expense
 
+Expenses = namedtuple("Expenses", ["new", "deleted"])
 Category = namedtuple("Category", ["id", "name", "parent"])
 
 
@@ -23,15 +24,19 @@ class Splitwise(object):
         resp, content = self.client.request(url, method)
         return json.loads(content)
 
-    def _build_url(self, path, query = dict()):
+    def _build_url(self, path, query = None):
         """Build a full URL using the relative URL"""
+        query = {} if query is None else query
         query_string = urllib.urlencode(query) if query else ""
         return "%s/%s?%s" % (self.base_url, path, query_string)
 
     @classmethod
-    def _parse_date(self, date):
+    def _parse_date(cls, date, delta=None):
         """Parse date from string, including timezone"""
-        return dateutil.parser.parse(date, ignoretz=False)
+        d = dateutil.parser.parse(date, ignoretz=False)
+        if delta and isinstance(delta, timedelta):
+            return d + delta
+        return d
 
     def _get_user_share(self, expense):
         """Get the proportional share for the user ID as part of this expense"""
@@ -59,6 +64,10 @@ class Splitwise(object):
     def _is_deletion(self, expense):
         """Check whether the expense is deleted"""
         return expense.get("deleted_by", None) is not None
+
+    @classmethod
+    def _does_repeat(cls, expense):
+        return expense.get("repeat_interval", "never") != "never"
 
     def _construct_expense_id(self, expense):
         """Construct unique expense ID"""
@@ -90,6 +99,11 @@ class Splitwise(object):
             group = self.person.groups[group_id]
             currency = e.get("currency_code")
 
+            #  Handle erroneous date time offsets recurring expenses
+            if self._does_repeat(e):
+                created_at = self._parse_date(e.get("date"), delta=timedelta(hours=1))
+                print("Updating created_at for recurring payment", created_at)
+
             expense = Expense(
                 id=id,
                 user_id=user_id,
@@ -110,7 +124,7 @@ class Splitwise(object):
             id = self._construct_expense_id(e)
             deleted_expenses.append(id)
 
-        return new_expenses, deleted_expenses
+        return Expenses(new=new_expenses, deleted=deleted_expenses)
 
     def get_categories(self):
         """Get all categories"""

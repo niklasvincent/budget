@@ -56,13 +56,13 @@ class SyncHandler(object):
         time_now = datetime.datetime.now()
 
         try:
-            new_expenses, deleted_expenses = self.splitwise.get_expenses(time_previous_sync)
-            for new_expense in new_expenses:
+            expenses = self.splitwise.get_expenses(time_previous_sync)
+            for new_expense in expenses.new:
                 new_expense = self._handle_currency_conversion(new_expense)
                 self.db.session.merge(new_expense)
                 self.nbr_of_updates += 1
                 self.db.session.commit()
-            for deleted_expense_id in deleted_expenses:
+            for deleted_expense_id in expenses.deleted:
                 self.db.delete_expense_by_id(expense_id=deleted_expense_id)
                 self.nbr_of_deletes += 1
         except Exception as e:
