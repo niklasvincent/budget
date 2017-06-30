@@ -7,7 +7,7 @@ import unittest
 import oauth2
 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from mock import Mock, MagicMock
 
@@ -145,6 +145,16 @@ class TestSplitwise(unittest.TestCase):
             requested_urls[1],
             "https://secure.splitwise.com/api/v3.0/get_expenses?updated_after=2015-04-18"
         )
+
+    def testParseDateWithoutDelta(self):
+        splitwise = Splitwise(self.consumer, self.person)
+        date = splitwise._parse_date("2017-06-24T14:48:22Z")
+        self.assertEquals(datetime(2017, 6, 24, 14, 48, 22, tzinfo=pytz.utc), date)
+
+    def testParseDateWithDelta(self):
+        splitwise = Splitwise(self.consumer, self.person)
+        date = splitwise._parse_date("2017-06-24T14:48:22Z", delta=timedelta(hours=1))
+        self.assertEquals(datetime(2017, 6, 24, 15, 48, 22, tzinfo=pytz.utc), date)
 
 
 def main():
