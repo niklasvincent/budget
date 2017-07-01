@@ -55,6 +55,22 @@ login_manager = LoginManager(app)
 google_login = GoogleLogin(app)
 
 
+class InvalidUsage(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -104,6 +120,17 @@ def login_failure(e):
 @login_required
 def get_expenses_for_this_month():
     result = aggregator.get_expenses_for_this_month(person=g.user)
+    return jsonify(result)
+
+
+@app.route("/api/v1.0/expenses/<year_and_month>")
+@login_required
+def get_expenses(year_and_month):
+    try:
+        year, month = [int(i) for i in year_and_month.split('-', 1)]
+    except ValueError:
+        raise InvalidUsage(message="Invalid date", status_code=400)
+    result = aggregator.get_expenses_for_month(person=g.user, year=year, month=month)
     return jsonify(result)
 
 if __name__ == "__main__":
