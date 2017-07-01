@@ -28,7 +28,11 @@
     </nav>
 
       <script id="summary-template" type="text/x-handlebars-template">
+          {{#if year_and_month}}
+          <h2 class="summary">£{{total}} spent {{year_and_month}}</h2>
+          {{else}}
           <h2 class="summary">£{{total}} spent this month</h2>
+          {{/if}}
         </script>
 
         <script id="expense-template" type="text/x-handlebars-template">
@@ -44,11 +48,11 @@
           {{#each categories}}
                 <!--<tr><td class="date">{{created_at}}</td><td>{{description}}</td><td class="cost">£{{cost}}</td></tr>-->
                 <tr>
-                  <td><span id="{{@index}}-expenses__expand" class="glyphicon glyphicon-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#{{@index}}-expenses"></span> {{name}}</td>
+                  <td><span id="{{@index}}_{{../index}}-expenses__expand" class="glyphicon glyphicon-chevron-down" aria-hidden="true" data-toggle="collapse" data-target="#{{@index}}_{{../index}}-expenses"></span> {{name}}</td>
                   <td>£{{total_sum}}</td>
                 </tr>
                 <tr>
-                  <td id="{{@index}}-expenses" class="accordion-body collapse">
+                  <td id="{{@index}}_{{../index}}-expenses" class="accordion-body collapse">
                     <table class="table table-striped table-bordered">
                       <thead class="thead-default">
                         <tr>
