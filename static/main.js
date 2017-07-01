@@ -8,8 +8,8 @@ function selectMonth() {
 
 $(function() {
     var yearAndMonth = selectMonth();
-    yearAndMonth = yearAndMonth == null ? "this_month" : yearAndMonth;
-    var url = "/api/v1.0/expenses/" + yearAndMonth;
+    var yearAndMonthParameter = yearAndMonth == null ? "this_month" : yearAndMonth;
+    var url = "/api/v1.0/expenses/" + yearAndMonthParameter;
     $.ajax({
         url: url,
         success: function(response) {
