@@ -102,7 +102,6 @@ class Splitwise(object):
             #  Handle erroneous date time offsets recurring expenses
             if self._does_repeat(e):
                 created_at = self._parse_date(e.get("date"), delta=timedelta(hours=1))
-                print("Updating created_at for recurring payment", created_at)
 
             expense = Expense(
                 id=id,

@@ -137,6 +137,14 @@ def main():
 
     if args.periodic:
         logger.info("Scheduling periodic jobs")
+
+        for person in config.get_people():
+            logger.info("Configured to sync for: %s", person.name)
+
+        # Purge and sync after just starting up
+        purge_all()
+        sync_expenses()
+
         schedule.every(15).minutes.do(sync_expenses)
         schedule.every().monday.do(purge_all)
         while True:
