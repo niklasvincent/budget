@@ -3,6 +3,9 @@ import os
 import sys
 
 
+import pytz
+
+
 class SyncHandler(object):
 
     def __init__(self, db, person, splitwise, fixer):
@@ -53,7 +56,7 @@ class SyncHandler(object):
         self._reset_counters()
 
         time_previous_sync = self.db.get_last_successful_marker_datetime(self.person.user_id)
-        time_now = datetime.datetime.now()
+        time_now = datetime.datetime.now(tz=pytz.utc)
 
         try:
             expenses = self.splitwise.get_expenses(time_previous_sync)
@@ -66,6 +69,8 @@ class SyncHandler(object):
                 self.db.delete_expense_by_id(expense_id=deleted_expense_id)
                 self.nbr_of_deletes += 1
         except Exception as e:
+            self.db.session.rollback()
+
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             message = "(%s:%s) %s: %s" % (fname, exc_tb.tb_lineno, exc_type, e)

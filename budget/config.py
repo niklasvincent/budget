@@ -10,6 +10,17 @@ import boto3
 import oauth2
 
 
+class SlackConfig(object):
+
+    def __init__(self, slack_config_data):
+        self.access_token = slack_config_data["access_token"]
+        self.schedule = slack_config_data["when"]
+        self.channel_name = slack_config_data["channel"]
+        self.bot_username = slack_config_data["name"]
+        self.icon_url = slack_config_data["icon_url"]
+        self.schedule = slack_config_data["when"]
+
+
 class Person(object):
 
     def __init__(self, name, user_id, email_address, groups, default_currency, access_token, access_secret):
@@ -102,3 +113,6 @@ class Config(object):
 
     def get_user_by_email(self, email):
         return self.users.get(email, None)
+
+    def get_slack_config(self):
+        return SlackConfig(self.data["slack"])

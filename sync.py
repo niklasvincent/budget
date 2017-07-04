@@ -3,9 +3,11 @@ import logging
 import sys
 import time
 
+from budget.aggregator import Aggregator
 from budget.config import Config
 from budget.database import *
 from budget.fixer import Fixer
+from budget.slack import Slack
 from budget.splitwise import Splitwise
 from budget.sync_handler import SyncHandler
 
@@ -71,17 +73,24 @@ def set_up(args):
     db = Database(config.get_database_uri())
     db.create_tables()
 
+    aggregator = Aggregator(db)
+    slack = Slack(
+        people=config.get_people(),
+        slack_config=config.get_slack_config(),
+        aggregator=aggregator
+    )
+
     fixer = Fixer()
 
     logger = get_logger(args.debug)
 
-    return config, db, fixer, logger
+    return config, db, slack, fixer, logger
 
 
 def main():
     args = parse_arguments()
 
-    config, db, fixer, logger = set_up(args)
+    config, db, slack, fixer, logger = set_up(args)
 
     def purge_expenses():
         logger.info("Asked to purge all expenses in database")
@@ -126,6 +135,11 @@ def main():
                     (last_marker.nbr_of_updates, last_marker.nbr_of_deletes, last_marker.nbr_of_conversions)
                 )
 
+    def slack_notifications():
+        for person in config.get_people():
+            last_marker = db.get_last_marker(user_id=person.user_id)
+            slack.notify(last_marker=last_marker, person=person)
+
     if args.purge_expenses:
         purge_expenses()
 
@@ -147,10 +161,17 @@ def main():
 
         schedule.every(15).minutes.do(sync_expenses)
         schedule.every().monday.do(purge_all)
+
+        # Schedule Slack notifications
+        for moment in config.get_slack_config().schedule:
+            schedule.every().day.at(moment).do(slack_notifications)
+
+        # Send off initial Slack notification when starting up
+        slack_notifications()
+
         while True:
             schedule.run_pending()
             time.sleep(1)
-
 
 if __name__ == '__main__':
     main()
