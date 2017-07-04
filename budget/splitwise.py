@@ -33,7 +33,7 @@ class Splitwise(object):
     @classmethod
     def _parse_date(cls, date, delta=None):
         """Parse date from string, including timezone"""
-        d = dateutil.parser.parse(date, ignoretz=False)
+        d = dateutil.parser.parse(date, ignoretz=True)
         if delta and isinstance(delta, timedelta):
             return d + delta
         return d
