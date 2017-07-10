@@ -22,7 +22,7 @@ oauthlib==2.0.2
 passlib==1.7.1
 pbr==3.1.1
 pyaml==16.12.2
-python-dateutil==2.6.0
+python-dateutil==2.6.1
 pytz==2017.2
 PyYAML==3.12
 requests==2.18.1
