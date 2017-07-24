@@ -31,7 +31,7 @@ s3transfer
 schedule==0.4.3
 six==1.10.0
 slacker==0.9.50
-SQLAlchemy==1.1.11
+SQLAlchemy==1.1.12
 Werkzeug==0.12.2
 wheel==0.29.0
 WTForms==2.1
