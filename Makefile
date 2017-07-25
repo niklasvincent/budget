@@ -1,3 +1,6 @@
+lint:
+	. ./venv/bin/activate && pip install pep8 && pep8 --show-source --exclude=venv .
+
 test-all:
 	. ./venv/bin/activate && ./tests/run-tests.sh
 
@@ -8,5 +11,5 @@ virtualenv:
 docker:
 	docker build -f Dockerfile -t nlindblad/budget .
 
-travis: test-all
+travis: lint test-all
 	docker build -f Dockerfile -t nlindblad/budget .
