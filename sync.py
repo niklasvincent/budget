@@ -3,6 +3,7 @@ import logging
 import sys
 import time
 
+
 from budget.aggregator import Aggregator
 from budget.config import Config
 from budget.database import *
@@ -12,7 +13,9 @@ from budget.splitwise import Splitwise
 from budget.sync_handler import SyncHandler
 
 
+import requests
 import schedule
+from raven import Client
 
 
 def get_logger(debug=False):
@@ -91,6 +94,12 @@ def main():
     args = parse_arguments()
 
     config, db, slack, fixer, logger = set_up(args)
+    sentry_client = Client(config.sentry_url)
+
+    def report_success():
+        """Report successful run to healthchecks.io"""
+        if not args.debug:
+            requests.get(config.healthchecks_url)
 
     def purge_expenses():
         logger.info("Asked to purge all expenses in database")
@@ -118,7 +127,7 @@ def main():
                 fixer=fixer
             )
 
-            sync_handler.execute()
+            sync_handler.execute(sentry_client)
 
             last_marker = db.get_last_marker(user_id=person.user_id)
 
@@ -129,6 +138,7 @@ def main():
                     "Last successful sync for user %s was at %s" % (person.name, last_successful_marker.created_at)
                 )
             else:
+                report_success()
                 logger.info("Sync for user %s successful" % person.name)
                 logger.info(
                     "%d record(s) added/updated, %d record(s) deleted, %d currency conversion(s) performed" %
@@ -150,28 +160,31 @@ def main():
         sync_expenses()
 
     if args.periodic:
-        logger.info("Scheduling periodic jobs")
+        try:
+            logger.info("Scheduling periodic jobs")
 
-        for person in config.get_people():
-            logger.info("Configured to sync for: %s", person.name)
+            for person in config.get_people():
+                logger.info("Configured to sync for: %s", person.name)
 
-        # Purge and sync after just starting up
-        purge_all()
-        sync_expenses()
+            # Purge and sync after just starting up
+            purge_all()
+            sync_expenses()
 
-        schedule.every(15).minutes.do(sync_expenses)
-        schedule.every().monday.do(purge_all)
+            schedule.every(15).minutes.do(sync_expenses)
+            schedule.every().monday.do(purge_all)
 
-        # Schedule Slack notifications
-        for moment in config.get_slack_config().schedule:
-            schedule.every().day.at(moment).do(slack_notifications)
+            # Schedule Slack notifications
+            for moment in config.get_slack_config().schedule:
+                schedule.every().day.at(moment).do(slack_notifications)
 
-        # Send off initial Slack notification when starting up
-        slack_notifications()
+            # Send off initial Slack notification when starting up
+            slack_notifications()
 
-        while True:
-            schedule.run_pending()
-            time.sleep(1)
+            while True:
+                schedule.run_pending()
+                time.sleep(1)
+        except Exception:
+            sentry_client.captureException()
 
 if __name__ == '__main__':
     main()
