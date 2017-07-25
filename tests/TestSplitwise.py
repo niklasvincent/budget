@@ -41,7 +41,7 @@ class TestSplitwise(unittest.TestCase):
 
     def testParseDateWithoutTimeZone(self):
         splitwise = Splitwise(self.consumer, self.person)
-        unaware = datetime(2015, 4, 18, 15, 30, 35, tzinfo=pytz.utc)
+        unaware = datetime(2015, 4, 18, 15, 30, 35)
         parsed = splitwise._parse_date("2015-04-18T15:30:35Z")
         self.assertEqual(
             parsed,
@@ -149,12 +149,12 @@ class TestSplitwise(unittest.TestCase):
     def testParseDateWithoutDelta(self):
         splitwise = Splitwise(self.consumer, self.person)
         date = splitwise._parse_date("2017-06-24T14:48:22Z")
-        self.assertEquals(datetime(2017, 6, 24, 14, 48, 22, tzinfo=pytz.utc), date)
+        self.assertEquals(datetime(2017, 6, 24, 14, 48, 22), date)
 
     def testParseDateWithDelta(self):
         splitwise = Splitwise(self.consumer, self.person)
         date = splitwise._parse_date("2017-06-24T14:48:22Z", delta=timedelta(hours=1))
-        self.assertEquals(datetime(2017, 6, 24, 15, 48, 22, tzinfo=pytz.utc), date)
+        self.assertEquals(datetime(2017, 6, 24, 15, 48, 22), date)
 
 
 def main():

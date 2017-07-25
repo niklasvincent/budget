@@ -52,7 +52,7 @@ class SyncHandler(object):
         else:
             return expense
 
-    def execute(self):
+    def execute(self, sentry_client=None):
         self._reset_counters()
 
         time_previous_sync = self.db.get_last_successful_marker_datetime(self.person.user_id)
@@ -69,6 +69,9 @@ class SyncHandler(object):
                 self.db.delete_expense_by_id(expense_id=deleted_expense_id)
                 self.nbr_of_deletes += 1
         except Exception as e:
+            if sentry_client:
+                sentry_client.captureException()
+
             self.db.session.rollback()
 
             exc_type, exc_obj, exc_tb = sys.exc_info()
