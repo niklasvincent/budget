@@ -116,3 +116,11 @@ class Config(object):
 
     def get_slack_config(self):
         return SlackConfig(self.data["slack"])
+
+    @property
+    def healthchecks_url(self):
+        return self.data["monitoring"]["healthchecks_url"]
+
+    @property
+    def sentry_url(self):
+        return self.data["monitoring"]["sentry_url"]
