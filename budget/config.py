@@ -23,7 +23,7 @@ class SlackConfig(object):
 
 class Person(object):
 
-    def __init__(self, name, user_id, email_address, groups, default_currency, access_token, access_secret):
+    def __init__(self, name, user_id, email_address, groups, default_currency, access_token, access_secret, currencies):
         self.name = name
         self.user_id = user_id
         self.email_address = email_address
@@ -31,6 +31,7 @@ class Person(object):
         self.default_currency = default_currency
         self.token = oauth2.Token(access_token, access_secret)
         self.is_active = True
+        self.currencies = currencies
 
     def get_id(self):
         return self.email_address
@@ -103,7 +104,8 @@ class Config(object):
                 groups=groups,
                 default_currency=person["default_currency"],
                 access_token=person["access_token"],
-                access_secret=person["access_secret"]
+                access_secret=person["access_secret"],
+                currencies=person.get("currencies", [])
             )
             people.append(full_person)
         return people

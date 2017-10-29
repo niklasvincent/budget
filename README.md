@@ -52,6 +52,8 @@ splitwise:
       groups:
         - 123: "Alias for group"
         - default: "Day to Day Expenses"
+      currencies:
+        - SEK
     - name: "Iona"
       email_address: "XXXXX"
       access_token: "XXXXXX"

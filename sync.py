@@ -149,6 +149,12 @@ def main():
         for person in config.get_people():
             last_marker = db.get_last_marker(user_id=person.user_id)
             slack.notify(last_marker=last_marker, person=person)
+            if person.currencies:
+                slack.exchange_rate(
+                    from_currency=person.default_currency,
+                    to_currencies=person.currencies,
+                    fixer=fixer
+                )
 
     if args.purge_expenses:
         purge_expenses()
