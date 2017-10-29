@@ -27,7 +27,7 @@ class TestSplitwise(unittest.TestCase):
         return data
 
     def setUp(self):
-        self.person = Person("Test User", 1234, "test@example.com", defaultdict(lambda: "Expense"), "GBP", "abc", "xyz")
+        self.person = Person("Test User", 1234, "test@example.com", defaultdict(lambda: "Expense"), "GBP", "abc", "xyz", [])
         self.consumer = oauth2.Consumer("def", "jkl")
 
     def testBuildUrl(self):
