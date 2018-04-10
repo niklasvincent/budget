@@ -23,7 +23,7 @@ passlib==1.7.1
 pbr==4.0.1
 pyaml==17.12.1
 python-dateutil==2.7.2
-pytz==2018.3
+pytz==2018.4
 PyYAML==3.12
 raven
 requests==2.18.4
