@@ -22,7 +22,7 @@ oauthlib==2.1.0
 passlib==1.7.1
 pbr==5.1.0
 pyaml==17.12.1
-python-dateutil==2.7.3
+python-dateutil==2.7.4
 pytz==2018.6
 PyYAML==3.13
 raven
