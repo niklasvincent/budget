@@ -21,7 +21,7 @@ oauth2==1.9.0.post1
 oauthlib==2.1.0
 passlib==1.7.1
 pbr==5.1.1
-pyaml==17.12.1
+pyaml==18.11.0
 python-dateutil==2.7.5
 pytz==2018.7
 PyYAML==3.13
