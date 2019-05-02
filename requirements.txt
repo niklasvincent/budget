@@ -16,7 +16,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 jmespath==0.9.4
 MarkupSafe==1.1.1
-mock==3.0.2
+mock==3.0.3
 oauth2==1.9.0.post1
 oauthlib==3.0.1
 passlib==1.7.1
