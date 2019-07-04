@@ -20,7 +20,7 @@ mock==3.0.5
 oauth2==1.9.0.post1
 oauthlib==3.0.2
 passlib==1.7.1
-pbr==5.3.1
+pbr==5.4.0
 pyaml==19.4.1
 python-dateutil==2.8.0
 pytz==2019.1
