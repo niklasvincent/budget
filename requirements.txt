@@ -18,7 +18,7 @@ jmespath==0.9.4
 MarkupSafe==1.1.1
 mock==3.0.5
 oauth2==1.9.0.post1
-oauthlib==3.0.2
+oauthlib==3.1.0
 passlib==1.7.1
 pbr==5.4.2
 pyaml==19.4.1
