@@ -34,5 +34,5 @@ six==1.14.0
 slacker==0.13.0
 SQLAlchemy==1.3.13
 Werkzeug==0.16.1
-wheel==0.34.1
+wheel==0.34.2
 WTForms==2.2.1
