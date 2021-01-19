@@ -24,7 +24,7 @@ pbr==5.5.1
 pyaml==20.4.0
 python-dateutil==2.8.1
 pytz==2020.5
-PyYAML==5.3.1
+PyYAML==5.4
 raven
 requests==2.25.1
 requests-oauthlib==1.3.0
