@@ -8,7 +8,7 @@ Flask-Mail==0.9.1
 Flask-OAuth2-Login==0.0.9
 Flask-Principal==0.4.0
 Flask-Security==3.0.0
-Flask-WTF==0.15.0
+Flask-WTF==0.15.1
 funcsigs==1.0.2
 futures==3.3.0
 httplib2==0.19.1
